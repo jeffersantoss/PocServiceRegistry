@@ -1,0 +1,53 @@
+version: '3.4'
+
+services:
+
+  author.service.api:
+    container_name: author.service.api
+    image: ${DOCKER_REGISTRY-}authorserviceapi
+    build:
+      context: .
+      dockerfile: Apis\AuthorService.Api\Dockerfile
+    networks:
+      - proxy
+
+  book.service.api:
+    container_name: book.service.api
+    image: ${DOCKER_REGISTRY-}bookserviceapi
+    build:
+      context: .
+      dockerfile: Apis/BookService.Api/Dockerfile
+    networks:
+      - proxy
+
+  publisher.service.api:
+    container_name: publisher.service.api
+    image: ${DOCKER_REGISTRY-}publisherserviceapi
+    build:
+      context: .
+      dockerfile: Apis\PublisherService.Api\Dockerfile
+    networks:
+      - proxy
+
+  gateway:
+    image: ${DOCKER_REGISTRY-}gateway
+    build:
+      context: .
+      dockerfile: Gateway/Gateway/Dockerfile
+    networks:
+      - proxy
+
+  consul:
+    image: consul:1.15.4
+    container_name: consul
+    ports:
+      - "8500:8500"
+    command: agent -server -ui -node=consul -bootstrap-expect=1 -client=0.0.0.0
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    name: proxy
+
+# docker run -d -p 8500:8500 -p 8600:8600 --name badger consul:1.15.4 agent -server -ui -node=server-1 -bootstrap-expect=1 -client='0.0.0.0'

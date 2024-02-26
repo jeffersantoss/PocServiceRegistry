@@ -1,0 +1,6 @@
+@ServiceRegistry.Api3_HostAddress = http://localhost:5212
+
+GET {{ServiceRegistry.Api3_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

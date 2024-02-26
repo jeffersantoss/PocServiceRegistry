@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "author.service.api": "StartWithoutDebugging",
+        "book.service.api": "StartWithoutDebugging",
+        "publisher.service.api": "StartWithoutDebugging",
+        "gateway": "StartWithoutDebugging",
+        "consul": "StartWithoutDebugging"
+      }
+    }
+  }
+}

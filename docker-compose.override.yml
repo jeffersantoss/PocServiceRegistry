@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+
+  gateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_HTTP_PORTS=5000
+    ports:
+      - "5000:5000"
+
+  author.service.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_HTTP_PORTS=5001
+    ports:
+      - "5001:5001"
+
+  book.service.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_HTTP_PORTS=5002
+    ports:
+      - "5002:5002"
+
+  publisher.service.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_HTTP_PORTS=5003
+    ports:
+      - "5003:5003"
