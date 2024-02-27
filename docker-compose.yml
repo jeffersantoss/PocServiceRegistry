@@ -37,14 +37,14 @@ services:
     networks:
       - proxy
 
-  consul:
-    image: consul:1.15.4
-    container_name: consul
-    ports:
-      - "8500:8500"
-    command: agent -server -ui -node=consul -bootstrap-expect=1 -client=0.0.0.0
-    networks:
-      - proxy
+  # consul:
+  #   image: consul:1.15.4
+  #   container_name: consul
+  #   ports:
+  #     - "8500:8500"
+  #   command: agent -server -ui -node=consul -bootstrap-expect=1 -client=0.0.0.0
+  #   networks:
+  #     - proxy
 
 networks:
   proxy:

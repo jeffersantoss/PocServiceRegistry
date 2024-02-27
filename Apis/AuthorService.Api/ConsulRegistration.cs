@@ -16,9 +16,11 @@ public static class ConsulRegistration
         var serviceId = $"{serviceName}";
         var serviceAddress = consulConfig["Consul:ServiceHost"];
         var servicePort = consulConfig["Consul:ServicePort"];
-        var serviceHealthCheck = consulConfig["Consul:ServiceHealthCheck"];
+        var serviceScheme = consulConfig["Consul:ServiceScheme"];
+        var HealthCheckPath = consulConfig["Consul:HealthCheckPath"];
         var serviceTTL = consulConfig["Consul:ServiceTTL"];
         var serviceTags = new[] { "authors", "api" };
+        var healthCheckUrl = $"{serviceScheme}://{serviceAddress}:{servicePort}/{HealthCheckPath!.TrimStart('/')}";
 
         var registration = new AgentServiceRegistration
         {
@@ -27,12 +29,12 @@ public static class ConsulRegistration
             Address = serviceAddress,
             Port = int.Parse(servicePort!),
             Tags = serviceTags,
-            //Check = new AgentServiceCheck
-            //{
-            //    HTTP = serviceHealthCheck,
-            //    Interval = TimeSpan.FromSeconds(10),
-            //    DeregisterCriticalServiceAfter = TimeSpan.FromSeconds(30)
-            //}
+            Check = new AgentServiceCheck
+            {
+                HTTP = healthCheckUrl,
+                Interval = TimeSpan.FromSeconds(10),
+                DeregisterCriticalServiceAfter = TimeSpan.FromSeconds(30)
+            }
         };
 
         logger.LogInformation("Deregistering service {ServiceName} with ID {ServiceId}", serviceName, serviceId);

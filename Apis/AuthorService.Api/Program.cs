@@ -48,18 +48,21 @@ app.UseHealthChecks("/health", new HealthCheckOptions
 
 app.MapGet("/api/authors", () =>
 {
-    return new List<Author>
+    return new
     {
-        new(1, "James Baldwin", "James Arthur Baldwin was an American novelist, playwright, essayist, poet, and activist."),
-        new(2, "Toni Morrison", "Toni Morrison was an American novelist, essayist, editor, teacher, and professor emeritus at Princeton University."),
-        new(3, "Maya Angelou", "Maya Angelou was an American poet, memoirist, and civil rights activist."),
-        new(4, "Langston Hughes", "Langston Hughes was an American poet, social activist, novelist, playwright, and columnist."),
-        new(5, "Zora Neale Hurston", "Zora Neale Hurston was an American author, anthropologist, and filmmaker."),
-        new(6, "Alice Walker", "Alice Walker is an American novelist, short story writer, poet, and social activist."),
-        new(7, "Ralph Ellison", "Ralph Waldo Ellison was an American novelist, literary critic, and scholar."),
-        new(8, "Richard Wright", "Richard Nathaniel Wright was an American author of novels, short stories, poems, and non-fiction."),
-        new(9, "Octavia Butler", "Octavia Estelle Butler was an American science fiction author."),
-        new(10, "Terry McMillan", "Terry McMillan is an American author. Her work is characterized")
+        authors = new List<Author>
+        {
+            new(1, "James Baldwin", "James Arthur Baldwin was an American novelist, playwright, essayist, poet, and activist."),
+            new(2, "Toni Morrison", "Toni Morrison was an American novelist, essayist, editor, teacher, and professor emeritus at Princeton University."),
+            new(3, "Maya Angelou", "Maya Angelou was an American poet, memoirist, and civil rights activist."),
+            new(4, "Langston Hughes", "Langston Hughes was an American poet, social activist, novelist, playwright, and columnist."),
+            new(5, "Zora Neale Hurston", "Zora Neale Hurston was an American author, anthropologist, and filmmaker."),
+            new(6, "Alice Walker", "Alice Walker is an American novelist, short story writer, poet, and social activist."),
+            new(7, "Ralph Ellison", "Ralph Waldo Ellison was an American novelist, literary critic, and scholar."),
+            new(8, "Richard Wright", "Richard Nathaniel Wright was an American author of novels, short stories, poems, and non-fiction."),
+            new(9, "Octavia Butler", "Octavia Estelle Butler was an American science fiction author."),
+            new(10, "Terry McMillan", "Terry McMillan is an American author. Her work is characterized")
+        }
     };
 }).WithName("GetAuthors").WithOpenApi();
 
